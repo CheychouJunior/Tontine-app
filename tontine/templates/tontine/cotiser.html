@@ -1,0 +1,41 @@
+{% extends "tontine/base.html" %}
+{% block content %}
+    <div class="container">
+        
+        <h3> <u>Table des membres qui ont cotisé</u></h3>
+        <table class="table table-striped">
+            <thead class="thead bg-dark text-white">
+                <tr>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Montant</th>
+                    <th>Date de paiement</th>
+                </tr>
+            </thead>
+            {% for cotise in cotises %}
+            <tr>
+                <td>{{ cotise.id_membre.username }}</td>
+                <td>{{ cotise.id_membre.prenom }}</td>
+                <td>{{ cotise.id_cotisation.montant }}</td>
+                <td>{{ cotise.date }}</td>
+            </tr>
+            {% endfor%}
+        </table>
+        
+        <br><br><br><br><br><br><br><br><br><br>
+        {% if cotis.id_tontine.author.username == user.username %}
+            <center>
+                <a href="{% url 'cotiser' cotis.id_cotisation %}" class="btn btn-primary btn-sm " role="button" aria-disabled="true">Cotiser</a>
+                <a href="{% url 'suspendre_cotisation' cotis.id_cotisation %}" class="btn btn-primary btn-sm " role="button" aria-disabled="true">Suspendre</a>
+            </center>
+        {% else %}
+            <center>
+                <a href="{% url 'cotiser' cotis.id_cotisation %}" class="btn btn-primary btn-sm" role="button" aria-disabled="true">Cotiser</a>
+                <a href="#" class="btn btn-primary btn-sm disabled" role="button" aria-disabled="true">Suspendre</a>
+            </center>
+        {% endif %}
+            
+        
+    </div>
+    <br><br>
+{% endblock content %}

@@ -1,0 +1,86 @@
+{% extends "tontine/base.html" %}
+{% block content %}
+    <div class="container">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto">
+                        <form class="form-inline my-2 my-lg-0" role="search" method="get" action="#">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <input type="text" class="form-control mr-sm-2" placeholder="Entrer le nom du membre" name="query_membre" value="">
+                                <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Rechercher</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+
+    <div class="row">
+        <div class="col-2">
+            <br><br><br>
+            <div class="list-group" id="list-tab" role="tablist">
+                    <a class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="{% url 'cotisation_details' elt.id_tontine %}" role="tab" aria-controls="cotisation">Cotisation</a>
+                    <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="{% url 'pret' elt.id_tontine %}" role="tab" aria-controls="pret">Pret</a>
+                    <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="{% url 'fond' elt.id_tontine %}" role="tab" aria-controls="fonds">Fonds</a>
+                    <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="{% url 'reunion' elt.id_tontine %}" role="tab" aria-controls="election">Reunion</a>
+                    <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#" role="tab" aria-controls="election">Election</a>
+                    <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="{% url 'statistique' elt.id_tontine %}" role="tab" aria-controls="rapport & stats">Rapports & Statistiques</a>
+            </div>
+        </div>
+        <div class="col-10">
+            <br>
+            <div class="container">
+                <h3> <u>Table de(s) participant(s)</u></h3>
+                <table class="table table-striped">
+                    <thead class="thead bg-dark text-white">
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prenom</th>
+                            <th>e-mail</th>
+                            <th>Adresse</th>
+                            <th>N<sup>o</sup> de tel </th>
+                            <th>Date de naissance</th> 
+                            <th>Profession</th>   <br>
+                        </tr>
+                    </thead>
+                    {% for membre in app_tontine %}
+                    <tr>
+                        <td>{{ membre.id_membre.username }}</td>
+                        <td>{{ membre.id_membre.prenom }}</td>
+                        <td>{{ membre.id_membre.e_mail }}</td>
+                        <td>{{ membre.id_membre.adresse }}</td>
+                        <td>{{ membre.id_membre.telephone }}</td>
+                        <td>{{ membre.id_membre.date_naissance }}</td>
+                        <td>{{ membre.id_membre.profession }}</a></td>
+                    </tr>
+                    {% endfor%}
+                </table>
+            </div>
+            <br><br><br><br><br><br><br><br><br><br>
+            {% if elt.id_tontine.author.username == user.username %}
+                <center>
+                    <a href="{% url 'ajouter_membre' elt.id_tontine %}" class="btn btn-primary btn-sm " role="button" aria-disabled="true">Ajouter Membre</a>
+                    <a href="{% url 'update_tontine' elt.id_tontine %}" class="btn btn-primary btn-sm " role="button" aria-disabled="true">Mettre à jour</a>
+                    <a href="{% url 'delete_tontine' elt.id_tontine %}" class="btn btn-primary btn-sm " role="button" aria-disabled="true">Dissoudre tontine</a>
+                    <a href="{% url 'create_cotisation' elt.id_tontine %}" class="btn btn-primary btn-sm " role="button" aria-disabled="true">Créer la cotisation</a>
+                </center>
+            {% else %}
+                <center>
+                    <a href="#" class="btn btn-primary btn-sm disabled" role="button" aria-disabled="true">Ajouter Membre</a>
+                    <a href="#" class="btn btn-primary btn-sm disabled" role="button" aria-disabled="true">Mettre à jour</a>
+                    <a href="#" class="btn btn-primary btn-sm disabled" role="button" aria-disabled="true">Dissoudre tontine</a>
+                    <a href="#" class="btn btn-primary btn-sm disabled" role="button" aria-disabled="true">Créer la cotisation</a>
+        
+                </center>
+            {% endif %}
+        </div>
+    </div> 
+    <br><br>
+{% endblock content %}

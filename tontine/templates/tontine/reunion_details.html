@@ -1,0 +1,36 @@
+{% extends "tontine/base.html" %}
+{% block content %}
+    <div class="container">
+        <br><br>
+        <h3> <u>Liste de presence</u></h3>
+        <table class="table table-striped">
+            <thead class="thead bg-dark text-white">
+                <tr>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            {% for reunion in reunions %}
+            <tr>
+                <td>{{ reunion.id_membre.username }}</td>
+                <td>{{ reunion.id_membre.prenom }}</td>
+                <td>{{ reunion.id_reunion.date_reunion }}</td>
+            </tr>
+            {% endfor%}
+        </table>
+        
+        <br><br><br><br><br><br><br><br><br><br>
+        {% if not s_reunion  %}
+            <center>
+                <a href="{% url 'signer' elt_reunion.id_reunion %}" class="btn btn-primary btn-sm" role="button" aria-disabled="true">Signer liste de presence</a>
+            </center>   
+        {% else %}
+            <center>
+                <a href="{% url 'signer' elt_reunion.id_reunion %}" class="btn btn-primary btn-sm disabled" role="button" aria-disabled="true">Signer liste de presence</a>
+            </center>   
+        {% endif %} 
+        
+    </div>
+    <br><br>
+{% endblock content %}

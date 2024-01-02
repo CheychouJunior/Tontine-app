@@ -1,0 +1,46 @@
+{% extends "tontine/base.html" %}
+{% block content %}
+    <div class="container">
+        
+        <h3> <u>Etat du pret</u></h3>
+        <table class="table table-striped">
+            <thead class="thead bg-dark text-white">
+                <tr>
+                    <th>Nom</th>
+                    <th>Date de pret</th>
+                    <th>Montant preter</th>
+                    <th>Montant à rembourser</th>
+                    <th>Date limite de remboursement</th>
+                </tr>
+            </thead>
+          
+            <tr>
+                <td>{{ pret.nom_pret }}</td>
+                <td>{{ pret.date_pret }}</td>
+                <td>{{ pret.montant }}</td>
+                <td>{{ montant_r }}</td>
+                <td>{{ pret.date_remboursement }}</td>
+            </tr>
+            
+        </table>
+        {% if not r_pret  %}
+            <p><i>Ce pret n'a pas encore été remboursé</i></p>
+            <br><br><br><br><br><br><br><br>
+            <center>
+                <a href="{% url 'rembourser_pret' pret.id_pret %}" class="btn btn-primary btn-sm " role="button" aria-disabled="true">Rembourser</a>
+                <a href="{% url 'reporter_pret' pret.id_pret %}" class="btn btn-primary btn-sm " role="button" aria-disabled="true">Reporter</a>
+            </center>
+        {% else %}
+            <p><i>Ce pret a dejà été remboursé</i></p>
+            <br><br><br><br><br><br><br><br>
+            <center>
+                <a href="#" class="btn btn-primary btn-sm disabled" role="button" aria-disabled="true">Rembourser</a>
+                <a href="#" class="btn btn-primary btn-sm disabled" role="button" aria-disabled="true">Reporter</a>
+            </center>
+        {% endif %}
+
+            
+        
+    </div>
+    <br><br>
+{% endblock content %}

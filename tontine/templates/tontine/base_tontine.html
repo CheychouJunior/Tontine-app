@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}{% endblock title %}</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'mycss/sidebar.css' %}">
+        <script>src="{% static 'js/bootstrap.min.js' %}"</script>
+    </head>
+    <body>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a href="#" class="navbar-brand"> <i>Tontine app</i> </a>
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav">
+                        <a href="{% url 'home' %}" class="nav-item nav-link">Home</a>
+                    </div>
+                    <div class="navbar-nav ms-auto">
+                        <a href="{% url 'login' %}" class="nav-item nav-link">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="row">
+            <div class="col-4">
+                <div class="list-group" id="list-tab" role="tablist">
+                        <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Home</a>
+                        <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Profile</a>
+                        <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Messages</a>
+                        <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Settings</a>
+                </div>
+            </div>
+            <div class="col-8">
+                 {% block content %}{% endblock %}
+            </div>
+        </div>
+<!-- 
+        <div class="container">
+            <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+                <div class="position-sticky">
+                    <div class="list-group list-group-flush mx-3 mt-4">
+                        <a
+                        href="#"
+                        class="list-group-item list-group-item-action py-2 ripple"
+                        aria-current="true"
+                        >
+                        <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Operations</span>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action py-2 ripple active">
+                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Cotisation</span>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action py-2 ripple"
+                        ><i class="fas fa-lock fa-fw me-3"></i><span>Pret</span></a
+                        >
+                        <a href="#" class="list-group-item list-group-item-action py-2 ripple"
+                        ><i class="fas fa-chart-line fa-fw me-3"></i><span>Fond</span></a
+                        >
+                        <a href="#" class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fas fa-chart-pie fa-fw me-3"></i><span>Election</span>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action py-2 ripple"
+                        ><i class="fas fa-chart-bar fa-fw me-3"></i><span>Rapports & Statistiques</span></a
+                        >
+                    </div>
+                </div>
+            </nav>
+        </div> -->
+
+       
+
+
+        <section class="">
+            <!-- Footer -->
+            <footer class="text-center text-white" style="background-color: #0f1c27;">
+              <!-- Grid container -->
+              <div class="container p-4 pb-0"><br><br>
+                <!-- Section: CTA -->
+              </div>
+              <!-- Grid container -->
+          
+              <!-- Copyright -->
+              <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                © 2023 Copyright:
+                <a class="text-white">Merci de nous avoir fait confiance</a><br><br>
+              </div>
+              <!-- Copyright -->
+            </footer>
+            <!-- Footer -->
+        </section>
+    
+        <script src = "js/query-3.6.1.min.js"></script>
+        <script src = "{% static 'js/bootstrap.js' %}"></script>
+    </body>
+</html>

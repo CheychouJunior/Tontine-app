@@ -1,0 +1,38 @@
+{% extends "tontine/base.html" %}
+ {% load static %}
+{% block content %}
+    <br>
+    <a href="{% url 'home' %}"><img  src="{% static 'images/back_button.jpg' %}"  width="60" height="40"></a>
+    <div class="container">
+        <br>
+        <h3> <u>Tontine(s) trouvé</u></h3><br>
+        <table class="table table-striped">
+            <thead class="thead bg-dark text-white">
+                <tr>
+                    <th scope="col-md-2">Nom_tontine</th>
+                    <th scope="col-md-2">Date_creation</th>
+                    <th scope="col-md-2">Slogan</th>
+                    <th scope="col-md-2">Créateur</th>
+                    <th scope="col-md-2">Contact du créateur</th>
+                </tr>
+            </thead>
+            {% for tontine in tontines %}
+                <tr>
+                    <td>{{tontine.nom}}</td>
+                    <td>{{tontine.date_creation}}</td>
+                    <td>{{tontine.slogan}}</td>
+                    <td>{{tontine.author.username}}</td>
+                    <td>{{tontine.author.telephone}}</td>
+                </tr>
+            {% endfor%}
+        </table>
+
+    </div>
+    <br><br><br><br><br><br><br><br><br>
+
+        <!-- <a href="{% url 'home' %}" class="btn btn-secondary btn-lg" role="button" aria-disabled="true">Back</a> -->
+
+    <br><br>
+
+
+{% endblock content %}

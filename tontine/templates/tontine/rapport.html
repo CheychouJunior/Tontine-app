@@ -1,0 +1,88 @@
+{% extends "tontine/base.html" %}
+ {% load static %}
+{% block content %}
+    <br>
+    <!-- <a href="{% url 'home' %}"><img  src="{% static 'images/back_button.jpg' %}"  width="60" height="40"></a> -->
+    <div class="container">
+        <br>
+        <h3> <u>Fonds</u></h3><br>
+        <table class="table table-striped">
+            <thead class="thead bg-dark text-white">
+                <tr>
+                    <th scope="col-md-2">Nom du fond</th>
+                    <th scope="col-md-2">Type du fond</th>
+                    <th scope="col-md-2">Nom du membre</th>
+                    <th scope="col-md-2">Date de paiement</th>
+                    <th scope="col-md-2">Montant</th>
+                </tr>
+            </thead>
+            {% for fond in fonds %}
+                {% if fond.id_fond in ls_fond %}
+                    <tr>
+                        <td>{{ fond.id_fond.nom_fond }}</td>
+                        <td>{{ fond.id_fond.type_fond }}</td>
+                        <td>{{ fond.id_membre.username }}</td>
+                        <td>{{ fond.date }}</td>
+                        <td>{{ fond.id_fond.montant }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor%}
+        </table>
+
+        <br><br><h3> <u>Cotisations</u></h3><br>
+        <table class="table table-striped">
+            <thead class="thead bg-dark text-white">
+                <tr>
+                    <th scope="col-md-2">Nom de la cotisation</th>
+                    <th scope="col-md-2">Nom du membre</th>
+                    <th scope="col-md-2">Date de paiement</th>
+                    <th scope="col-md-2">Montant</th>
+                </tr>
+            </thead>
+            {% for cotisation in cotisations %}
+                {% if cotisation.id_cotisation in ls_cotisation %}
+                    <tr>
+                        <td>{{ cotisation.id_cotisation.nom_cotisation }}</td>
+                        <td>{{ cotisation.id_membre.username }}</td>
+                        <td>{{ cotisation.date }}</td>
+                        <td>{{ cotisation.id_cotisation.montant }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor%}
+        </table>
+
+        <br><br><h3> <u>Prets</u></h3><br>
+        <table class="table table-striped">
+            <thead class="thead bg-dark text-white">
+                <tr>
+                    <th scope="col-md-2">Nom du pret</th>
+                    <th scope="col-md-2">Nom du membre</th>
+                    <th scope="col-md-2">Date du pret</th>
+                    <th scope="col-md-2">Date remboursé</th>
+                    <th scope="col-md-2">Montant preté</th>
+                    <th scope="col-md-2">Montant remboursé</th>
+                </tr>
+            </thead>
+            {% for pret in prets %}
+                {% if pret.id_pret in ls_pret %}
+                    <tr>
+                        <td>{{ pret.id_pret.nom_pret }}</td>
+                        <td>{{ pret.id_membre.username }}</td>
+                        <td>{{ pret.id_pret.date_pret }}</td>
+                        <td>{{ pret.date }}</td>
+                        <td>{{ pret.id_pret.montant }}</td>
+                        <td>{{ pret.montant }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor%}
+        </table>
+
+    </div>
+    <br><br><br><br><br><br><br><br><br>
+
+        <!-- <a href="{% url 'home' %}" class="btn btn-secondary btn-lg" role="button" aria-disabled="true">Back</a> -->
+
+    <br><br>
+
+
+{% endblock content %}

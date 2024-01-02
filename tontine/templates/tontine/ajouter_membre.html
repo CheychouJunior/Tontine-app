@@ -1,0 +1,22 @@
+{% extends "tontine/base.html" %}
+{% block content %}
+    <div class="container bg-light">
+        <div class="alert alert-success">{{ message }}</div>
+        
+        <h2>Ajouter un membre</h2>
+        <br>
+        <form method="post" action="{% url 'ajouter_membre' test.id_tontine %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <script>
+                let id = "{{ test.id_tontine }}"
+                document.getElementById('tontine').value = id
+            </script>
+            <div class="form-group">
+                <input class="btn btn-success" type="submit" value="Save">
+            </div> 
+        </form>
+    </div>
+{% endblock content %}

@@ -1,0 +1,11 @@
+#display
+{
+    display: flex;
+    align-content: space-around;
+
+}
+
+#display2
+{
+    margin:10px;
+}

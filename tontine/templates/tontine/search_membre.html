@@ -1,0 +1,31 @@
+{% extends "tontine/base.html" %}
+
+{% block content %}
+    <br>
+    <h3> <u>Membre(s) trouvé</u></h3>
+    <table class="table table-striped">
+        <thead class="thead bg-dark text-white">
+            <tr>
+                <th scope="col-md-2">Nom</th>
+                <th scope="col-md-2">Prenom</th>
+                <th scope="col-md-2">E-mail</th>
+                <th scope="col-md-2">Adresse</th>
+                <th scope="col-md-2">Telephone</th>
+                <th scope="col-md-2">Date de naissance</th>
+                <th scope="col-md-2">Profession</th>
+            </tr>
+        </thead>
+        {% for membre in membres %}
+            <tr>
+                <td>{{membre.username}}</td>
+                <td>{{membre.prenom}}</td>
+                <td>{{membre.e_mail}}</td>
+                <td>{{membre.adresse}}</td>
+                <td>{{membre.telephone}}</td>
+                <td>{{membre.date_naissance}}</td>
+                <td>{{membre.profession}}</td>
+            </tr>
+        {% endfor%}
+    </table>
+
+{% endblock content %}

@@ -1,0 +1,43 @@
+{% extends "tontine/base.html" %}
+{% load static %}
+{% block content %}
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto">
+                    <form class="form-inline my-2 my-lg-0" role="search" method="get" action="#">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <input type="text" class="form-control mr-sm-2" placeholder="Entrer le nom de la cotisation" name="query_cotisation" value="">
+                            <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Rechercher</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h3> </h3>
+        <h4>Voici les cotisations de la tontine</h4>
+        <br><br>
+        <div class="card-deck">
+            <div id="display">
+                {% for cotisation in cotisations %}
+                    <div class="card" style="width: 18rem;" id="display2">
+                        <img class="card-img-top" src="{% static 'images/cotisation.jpg' %}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ cotisation.nom_cotisation }}</h5>
+                            <p class="card-text"></p>
+                            <a href="{% url 'afficher_cotisation' cotisation.id_cotisation %}" class="btn btn-primary">Afficher</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

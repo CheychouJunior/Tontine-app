@@ -1,0 +1,33 @@
+{% extends "tontine/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <br><br>
+        <h4>Les reunions de la tontine</h4>
+        <br><br>
+        <div class="card-deck">
+            <div id="display">
+                {% for reunion in reunions %}
+                    <div class="card" style="width: 18rem;" id="display2">
+                        <img class="card-img-top" src="{% static 'images/reunion.jpg' %}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ reunion.lieu }}</h5>
+                            <p class="card-text">{{ reunion.motif }}</p>
+                            <a href="{% url 'afficher_reunion' reunion.id_reunion %}" class="btn btn-primary">Afficher</a>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="card" style="width: 18rem;" id="display2">
+                    <!-- <img class="card-img-top" src="{% static 'images/reunion.jpg' %}" alt="Card image cap"> -->
+                    <div class="card-body">
+                        <h5 class="card-title">Creer une nouvelle ruenion</h5>
+                        <p class="card-text"></p>
+                        <a href="{% url 'create_reunion' elt_tontine.id_tontine%}" class="btn btn-primary">Creer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br><br><br><br><br><br><br><br>
+    </div>
+
+{% endblock content %}
